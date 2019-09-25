@@ -6614,6 +6614,15 @@ public final class Settings {
         public static final String DISPLAY_PICTURE_ADJUSTMENT =
                 "display_picture_adjustment";
 
+        /** 
+         * Back gesture activation height 
+         * n/o sixths reduced in height (0 = nothing, default)
+         * value should not exceed 5
+         * @hide 
+         */
+        @Readable
+        public static final String BACK_GESTURE_HEIGHT = "back_gesture_height";
+
         /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add

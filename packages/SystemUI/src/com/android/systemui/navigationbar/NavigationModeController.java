@@ -17,6 +17,7 @@
 package com.android.systemui.navigationbar;
 
 import static android.content.Intent.ACTION_OVERLAY_CHANGED;
+import static android.provider.Settings.System.BACK_GESTURE_HEIGHT;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -39,6 +40,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.android.systemui.Dependency;
 import com.android.systemui.Dumpable;
 import com.android.systemui.dagger.SysUISingleton;
 import com.android.systemui.dagger.qualifiers.Main;
@@ -47,6 +49,7 @@ import com.android.systemui.dump.DumpManager;
 import com.android.systemui.settings.UserTracker;
 import com.android.systemui.statusbar.policy.ConfigurationController;
 import com.android.systemui.util.settings.SecureSettings;
+import com.android.systemui.util.settings.SystemSettings;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -66,6 +69,7 @@ public class NavigationModeController implements Dumpable {
     public interface ModeChangedListener {
         void onNavigationModeChanged(int mode);
         default void onNavigationHandleWidthModeChanged(int mode) {}
+        default void onNavigationHeightChanged() {}
     }
 
     private final Context mContext;
@@ -74,6 +78,7 @@ public class NavigationModeController implements Dumpable {
     private final Executor mUiBgExecutor;
     private final UserTracker mUserTracker;
     private final SecureSettings mSecureSettings;
+    private final SystemSettings mSystemSettings;
 
     private ArrayList<ModeChangedListener> mListeners = new ArrayList<>();
 
@@ -111,7 +116,8 @@ public class NavigationModeController implements Dumpable {
             @UiBackground Executor uiBgExecutor,
             DumpManager dumpManager,
             @Main Handler mainHandler,
-            SecureSettings secureSettings) {
+            SecureSettings secureSettings,
+            SystemSettings systemSettings) {
         mContext = context;
         mCurrentUserContext = context;
         mUserTracker = userTracker;
@@ -145,6 +151,17 @@ public class NavigationModeController implements Dumpable {
                     mListeners.forEach(listener ->
                         listener.onNavigationHandleWidthModeChanged(
                             getNavigationHandleWidthMode()));
+                }
+            }, UserHandle.USER_ALL);
+
+        mSystemSettings = systemSettings;
+        mSystemSettings.registerContentObserverForUserSync(
+            Settings.System.BACK_GESTURE_HEIGHT,
+            new ContentObserver(mainHandler) {
+                @Override
+                public void onChange(boolean selfChange) {
+                    mListeners.forEach(listener ->
+                        listener.onNavigationHeightChanged());
                 }
             }, UserHandle.USER_ALL);
 
