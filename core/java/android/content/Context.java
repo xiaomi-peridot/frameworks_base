@@ -6628,6 +6628,16 @@ public abstract class Context {
     @SuppressLint("ServiceName")
     public static final String WEBVIEW_UPDATE_SERVICE = "webviewupdate";
 
+   /**
+     * Use with {@link #getSystemService} to retrieve a
+     * {@link android.os.PocketManager} for accessing and listening to device pocket state.
+     *
+     * @hide
+     * @see #getSystemService
+     * @see android.os.PocketManager
+     */
+    public static final String POCKET_SERVICE = "pocket";
+
     /**
      * Use with {@link #getSystemService(String)} to retrieve a
      * {@link android.provider.BlockedNumbersManager} for accessing the blocked number service.
