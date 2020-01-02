@@ -6279,6 +6279,12 @@ public final class Settings {
         @SuppressLint("NoSettingsProvider")
         public static final String LOCKSCREEN_ROTATION = "lockscreen_rotation";
 
+        /**
+         * Whether or not to vibrate when a touchscreen gesture is detected
+         * @hide
+         */
+        public static final String TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK = "touchscreen_gesture_haptic_feedback";
+
        /**
          * Whether or not volume button music controls should be enabled to seek media tracks
          * @hide
@@ -6470,6 +6476,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SCREEN_FLASH_NOTIFICATION_COLOR);
             PRIVATE_SETTINGS.add(DEFAULT_DEVICE_FONT_SCALE);
             PRIVATE_SETTINGS.add(POCKET_JUDGE);
+            PRIVATE_SETTINGS.add(TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK);
         }
 
         /**
