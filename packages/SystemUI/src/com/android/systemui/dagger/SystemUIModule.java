@@ -58,6 +58,7 @@ import com.android.systemui.dagger.qualifiers.Main;
 import com.android.systemui.dagger.qualifiers.SystemUser;
 import com.android.systemui.dagger.qualifiers.UiBackground;
 import com.android.systemui.demomode.dagger.DemoModeModule;
+import com.android.systemui.halcyon.HalcyonModule;
 import com.android.systemui.deviceentry.DeviceEntryModule;
 import com.android.systemui.display.DisplayModule;
 import com.android.systemui.doze.dagger.DozeComponent;
@@ -207,6 +208,7 @@ import javax.inject.Named;
         ConnectivityModule.class,
         ControlsModule.class,
         DemoModeModule.class,
+        HalcyonModule.class,
         DeviceEntryModule.class,
         DisableFlagsModule.class,
         DisplayModule.class,
