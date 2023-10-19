@@ -65,6 +65,7 @@ public class DevicePropsSpoofing {
             "com.google.android.wallpaper.effects",
             "com.google.pixel.livewallpaper",
             "com.nhs.online.nhsonline",
+            "com.google.android.apps.photos"
     };
 
     // Packages to Spoof as Pixel 5a
@@ -234,9 +235,7 @@ public class DevicePropsSpoofing {
                 || Arrays.asList(packagesToChangePixel5a).contains(packageName)
                 || Arrays.asList(extraPackagesToChange).contains(packageName)) {
 
-            if (packageName.equals("com.google.android.apps.photos")) {
-                propsToChange.putAll(propsToChangePixelXL);
-            } else if (Arrays.asList(packagesToKeep).contains(packageName) ||
+            if (Arrays.asList(packagesToKeep).contains(packageName) ||
                        isGoogleCameraPackage(packageName) || isPixelDevice) {
                 return;
             } else if (packageName.equals("com.android.vending")) {
@@ -247,6 +246,11 @@ public class DevicePropsSpoofing {
                     propsToChange.putAll(propsToChangeNewPixel);
                 } else {
                     propsToChange.putAll(propsToChangePixel5a);
+                }
+                if (packageName.equals("com.google.android.apps.photos")) {
+                    if (SystemProperties.getBoolean("persist.sys.pixelprops.gphotos", true)) {
+                        propsToChange = propsToChangePixelXL;
+                    }
                 }
             }
 
