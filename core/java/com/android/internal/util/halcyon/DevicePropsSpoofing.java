@@ -54,6 +54,7 @@ public class DevicePropsSpoofing {
     // Packages to Spoof as Pixel 8 Pro
     private static final String[] packagesToChangePixel8Pro = {
             "com.android.vending",
+            "com.google.android.apps.bard",
             "com.google.android.apps.customization.pixel",
             "com.google.android.apps.emojiwallpaper",
             "com.google.android.apps.privacy.wildlife",
