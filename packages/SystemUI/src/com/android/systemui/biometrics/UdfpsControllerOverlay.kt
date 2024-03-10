@@ -182,7 +182,7 @@ class UdfpsControllerOverlay @JvmOverloads constructor(
         get() = coreLayoutParams.dimAmount
         set(value) {
             coreLayoutParams.dimAmount = value
-            windowManager.updateViewLayout(overlayView, coreLayoutParams)
+            windowManager.updateViewLayout(getTouchOverlay(), coreLayoutParams)
         }
 
     /** If the overlay is currently showing. */
