@@ -68,7 +68,8 @@ public class DevicePropsSpoofing {
             "com.google.android.wallpaper.effects",
             "com.google.pixel.livewallpaper",
             "com.nhs.online.nhsonline",
-            "com.google.android.apps.photos"
+            "com.google.android.apps.photos",
+            "com.google.android.apps.nexuslauncher"
     };
 
     // Packages to Spoof as Pixel 5a
@@ -88,7 +89,6 @@ public class DevicePropsSpoofing {
     // Packages to Keep with original device
     private static final String[] packagesToKeep = {
             "com.google.android.apps.motionsense.bridge",
-            "com.google.android.apps.nexuslauncher",
             "com.google.android.apps.pixelmigrate",
             "com.google.android.apps.recorder",
             "com.google.android.apps.restore",
