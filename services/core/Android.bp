@@ -228,6 +228,8 @@ java_library_static {
         "aconfig_new_storage_flags_lib",
         "powerstats_flags_lib",
         "vendor.aac.hardware.richtap.vibrator",
+        "vendor.xiaomi.hardware.fingerprintextension-V1-java",
+        "vendor.xiaomi.hw.touchfeature-V1-java",
     ],
     javac_shard_size: 50,
     javacflags: [
