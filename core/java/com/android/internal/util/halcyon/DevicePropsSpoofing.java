@@ -37,6 +37,9 @@ import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
+/**
+ * @hide
+ */
 public class DevicePropsSpoofing {
 
     private static final String TAG = DevicePropsSpoofing.class.getSimpleName();
