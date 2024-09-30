@@ -46,13 +46,13 @@ public class DevicePropsSpoofing {
     private static volatile String[] sCertifiedProps;
 
     private static final Map<String, Object> propsToChangeGeneric;
-    private static final Map<String, Object> propsToChangePixel8Pro;
+    private static final Map<String, Object> propsToChangeNewPixel;
     private static final Map<String, Object> propsToChangePixel5a;
     private static final Map<String, Object> propsToChangePixelXL;
     private static final Map<String, ArrayList<String>> propsToKeep;
 
-    // Packages to Spoof as Pixel 8 Pro
-    private static final String[] packagesToChangePixel8Pro = {
+    // Pckges to sppof as newer Pixel
+    private static final String[] packagesToNewChangePixel = {
             "com.android.vending",
             "com.google.android.apps.bard",
             "com.google.android.apps.customization.pixel",
@@ -111,6 +111,15 @@ public class DevicePropsSpoofing {
 
     // Codenames for currently supported Pixels by Google
     private static final String[] pixelCodenames = {
+            "rango",
+            "mustang",
+            "blazer",
+            "frankel",
+            "komodo",
+            "caiman",
+            "tokay",
+            "comet",
+            "akita",
             "husky",
             "shiba",
             "felix",
@@ -120,10 +129,7 @@ public class DevicePropsSpoofing {
             "panther",
             "bluejay",
             "oriole",
-            "raven",
-            "barbet",
-            "bramble",
-            "sunfish"
+            "raven"
     };
 
     private static volatile boolean sIsGms = false;
@@ -135,15 +141,15 @@ public class DevicePropsSpoofing {
         propsToChangeGeneric = new HashMap<>();
         propsToChangeGeneric.put("TYPE", "user");
         propsToChangeGeneric.put("TAGS", "release-keys");
-        propsToChangePixel8Pro = new HashMap<>();
-        propsToChangePixel8Pro.put("BRAND", "google");
-        propsToChangePixel8Pro.put("MANUFACTURER", "Google");
-        propsToChangePixel8Pro.put("DEVICE", "husky");
-        propsToChangePixel8Pro.put("PRODUCT", "husky");
-        propsToChangePixel8Pro.put("HARDWARE", "husky");
-        propsToChangePixel8Pro.put("MODEL", "Pixel 8 Pro");
-        propsToChangePixel8Pro.put("ID", "AP2A.240805.005");
-        propsToChangePixel8Pro.put("FINGERPRINT", "google/husky/husky:14/AP2A.240805.005/12025142:user/release-keys");
+        propsToChangeNewPixel = new HashMap<>();
+        propsToChangeNewPixel.put("BRAND", "google");
+        propsToChangeNewPixel.put("MANUFACTURER", "Google");
+        propsToChangeNewPixel.put("DEVICE", "komodo");
+        propsToChangeNewPixel.put("PRODUCT", "komodo_beta");
+        propsToChangeNewPixel.put("HARDWARE", "komodo");
+        propsToChangeNewPixel.put("MODEL", "Pixel 9 Pro XL");
+        propsToChangeNewPixel.put("ID", "AP31.240617.015");
+        propsToChangeNewPixel.put("FINGERPRINT", "google/komodo_beta/komodo:15/AP31.240617.015/12207491:user/release-keys");
         propsToChangePixel5a = new HashMap<>();
         propsToChangePixel5a.put("BRAND", "google");
         propsToChangePixel5a.put("MANUFACTURER", "Google");
@@ -189,7 +195,6 @@ public class DevicePropsSpoofing {
 
     private static void spoofBuildGms() {
         if (sCertifiedProps == null || sCertifiedProps.length == 0) return;
-        // Alter model name and fingerprint to avoid hardware attestation enforcement
         setPropValue("PRODUCT", sCertifiedProps[0].isEmpty() ? getDeviceName(sCertifiedProps[4]) : sCertifiedProps[0]);
         setPropValue("DEVICE", sCertifiedProps[1].isEmpty() ? getDeviceName(sCertifiedProps[4]) : sCertifiedProps[1]);
         setPropValue("MANUFACTURER", sCertifiedProps[2]);
@@ -225,7 +230,7 @@ public class DevicePropsSpoofing {
 
         if (packageName.startsWith("com.google.")
                 || packageName.startsWith("com.samsung.")
-                || Arrays.asList(packagesToChangePixel8Pro).contains(packageName)
+                || Arrays.asList(packagesToNewChangePixel).contains(packageName)
                 || Arrays.asList(packagesToChangePixel5a).contains(packageName)
                 || Arrays.asList(extraPackagesToChange).contains(packageName)) {
 
@@ -238,8 +243,8 @@ public class DevicePropsSpoofing {
                 sIsFinsky = true;
                 return;
             } else {
-                if (Arrays.asList(packagesToChangePixel8Pro).contains(packageName)) {
-                    propsToChange.putAll(propsToChangePixel8Pro);
+                if (Arrays.asList(packagesToNewChangePixel).contains(packageName)) {
+                    propsToChange.putAll(propsToChangeNewPixel);
                 } else {
                     propsToChange.putAll(propsToChangePixel5a);
                 }
