@@ -94,6 +94,8 @@ public class ScreenMediaRecorder extends MediaProjection.Callback {
     private final Handler mHandler;
     private int mMaxRefreshRate;
 
+    private boolean mUseAVCProfileHigh;
+
     private Context mContext;
     ScreenMediaRecorderListener mListener;
 
@@ -146,6 +148,8 @@ public class ScreenMediaRecorder extends MediaProjection.Callback {
         // Set up video
         DisplayMetrics metrics = new DisplayMetrics();
         WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+        mUseAVCProfileHigh =
+            mContext.getResources().getBoolean(R.bool.config_useAVCProfileHigh);
         wm.getDefaultDisplay().getRealMetrics(metrics);
         int refreshRate = (int) wm.getDefaultDisplay().getRefreshRate();
         if (mMaxRefreshRate != 0 && refreshRate > mMaxRefreshRate) refreshRate = mMaxRefreshRate;
@@ -156,9 +160,15 @@ public class ScreenMediaRecorder extends MediaProjection.Callback {
         int vidBitRate = width * height * refreshRate / VIDEO_FRAME_RATE
                 * VIDEO_FRAME_RATE_TO_RESOLUTION_RATIO;
         mMediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
-        mMediaRecorder.setVideoEncodingProfileLevel(
-                MediaCodecInfo.CodecProfileLevel.AVCProfileMain,
-                MediaCodecInfo.CodecProfileLevel.AVCLevel3);
+        if (mUseAVCProfileHigh) {
+            mMediaRecorder.setVideoEncodingProfileLevel(
+                    MediaCodecInfo.CodecProfileLevel.AVCProfileHigh,
+                    MediaCodecInfo.CodecProfileLevel.AVCLevel3);
+        } else {
+            mMediaRecorder.setVideoEncodingProfileLevel(
+                    MediaCodecInfo.CodecProfileLevel.AVCProfileMain,
+                    MediaCodecInfo.CodecProfileLevel.AVCLevel3);
+        }
         mMediaRecorder.setVideoSize(width, height);
         mMediaRecorder.setVideoFrameRate(refreshRate);
         mMediaRecorder.setVideoEncodingBitRate(vidBitRate);
