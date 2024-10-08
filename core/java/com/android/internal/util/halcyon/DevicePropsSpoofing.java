@@ -148,12 +148,12 @@ public class DevicePropsSpoofing {
         propsToChangeNewPixel = new HashMap<>();
         propsToChangeNewPixel.put("BRAND", "google");
         propsToChangeNewPixel.put("MANUFACTURER", "Google");
-        propsToChangeNewPixel.put("DEVICE", "komodo");
-        propsToChangeNewPixel.put("PRODUCT", "komodo_beta");
-        propsToChangeNewPixel.put("HARDWARE", "komodo");
-        propsToChangeNewPixel.put("MODEL", "Pixel 9 Pro XL");
-        propsToChangeNewPixel.put("ID", "AP31.240617.015");
-        propsToChangeNewPixel.put("FINGERPRINT", "google/komodo_beta/komodo:15/AP31.240617.015/12207491:user/release-keys");
+        propsToChangeNewPixel.put("DEVICE", "husky");
+        propsToChangeNewPixel.put("PRODUCT", "husky");
+        propsToChangeNewPixel.put("HARDWARE", "husky");
+        propsToChangeNewPixel.put("MODEL", "Pixel 8 Pro");
+        propsToChangeNewPixel.put("ID", "AP2A.240805.005");
+        propsToChangeNewPixel.put("FINGERPRINT", "google/husky/husky:14/AP2A.240805.005/12025142:user/release-keys");
         propsToChangePixel5a = new HashMap<>();
         propsToChangePixel5a.put("BRAND", "google");
         propsToChangePixel5a.put("MANUFACTURER", "Google");
