@@ -251,9 +251,7 @@ public class DevicePropsSpoofing {
                     propsToChange.putAll(propsToChangePixel5a);
                 }
                 if (packageName.equals("com.google.android.apps.photos")) {
-                    if (SystemProperties.getBoolean("persist.sys.pixelprops.gphotos", true)) {
-                        propsToChange = propsToChangePixelXL;
-                    }
+                    propsToChange = propsToChangePixelXL;
                 }
             }
 
