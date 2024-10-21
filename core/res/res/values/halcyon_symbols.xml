@@ -3,7 +3,6 @@
 
     <!-- Build properties from a GMS certified device -->
     <java-symbol type="array" name="config_certifiedBuildProperties" />
-    <java-symbol type="array" name="config_certifiedKeybox" />
 
     <!-- Device keyhandlers -->
     <java-symbol type="array" name="config_deviceKeyHandlerLibs" />

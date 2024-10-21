@@ -325,20 +325,10 @@ public class DevicePropsSpoofing {
     }
 
     public static void onEngineGetCertificateChain() {
-         // If a keybox is found, don't block key attestation
-        if (KeyProviderManager.isKeyboxAvailable()) {
-            dlog("Key attestation blocking is disabled because a keybox is defined to spoof");
-            return;
-        }
-        
         // Check stack for SafetyNet or Play Integrity
         if (isCallerSafetyNet() || sIsFinsky) {
             Log.i(TAG, "Blocked key attestation sIsGms=" + sIsGms + " sIsFinsky=" + sIsFinsky);
             throw new UnsupportedOperationException();
         }
-    }
-
-    private static void dlog(String msg) {
-        if (DEBUG) Log.d(TAG, msg);
     }
 }
